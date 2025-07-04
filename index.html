@@ -90,13 +90,13 @@
       top: 50%;
       left: 0;
       transform: translateY(-50%);
-      font-size: 40px;
+      font-size: 60px;
       filter: drop-shadow(0 0 6px #9cf);
     }
 
-    .planet:nth-child(2) { left: 60px; top: 70%; font-size: 25px; }
-    .planet:nth-child(3) { left: 130px; top: 30%; font-size: 35px; }
-    .planet:nth-child(4) { left: 200px; top: 45%; font-size: 30px; }
+    .planet:nth-child(2) { left: 60px; top: 70%; font-size: 45px; }
+    .planet:nth-child(3) { left: 130px; top: 30%; font-size: 55px; }
+    .planet:nth-child(4) { left: 200px; top: 45%; font-size: 50px; }
 
     @keyframes rotate {
       0% { transform: rotate(0deg); }
@@ -111,43 +111,12 @@
       width: 300px;
       z-index: 4;
     }
-
-    .comet {
-      position: absolute;
-      width: 100px;
-      height: 2px;
-      background: linear-gradient(to right, #ffffff, transparent);
-      opacity: 0.8;
-      animation: shoot 3s linear infinite;
-      z-index: 2;
-    }
-
-    @keyframes shoot {
-      0% {
-        transform: translate(-200px, -100px) rotate(45deg);
-        opacity: 0;
-      }
-      30% {
-        opacity: 1;
-      }
-      100% {
-        transform: translate(120vw, 120vh) rotate(45deg);
-        opacity: 0;
-      }
-    }
-
-    .comet:nth-child(1) { animation-delay: 0s; top: 10%; left: -200px; }
-    .comet:nth-child(2) { animation-delay: 1s; top: 30%; left: -300px; }
-    .comet:nth-child(3) { animation-delay: 2s; top: 50%; left: -400px; }
   </style>
 </head>
 <body>
   <div class="stars"></div>
   <div class="overlay"></div>
   <img src="/mnt/data/file_00000000ea8062309b485539e66227d1" alt="Echoes of Orbit Logo" class="logo" />
-  <div class="comet"></div>
-  <div class="comet"></div>
-  <div class="comet"></div>
   <div class="orbit-container">
     <div class="planet">🪐</div>
     <div class="planet">🌍</div>
