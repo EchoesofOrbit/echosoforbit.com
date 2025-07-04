@@ -12,13 +12,27 @@
       height: 100%;
       font-family: 'Orbitron', sans-serif;
       color: #ffffff;
-      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Solar_sys8.jpg/1920px-Solar_sys8.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background: radial-gradient(ellipse at bottom, #0d0d1a 0%, #000000 100%);
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: moveStars 60s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: -1000px 1000px; }
     }
 
     .overlay {
@@ -28,12 +42,13 @@
       bottom: 0;
       left: 0;
       right: 0;
-      z-index: 0;
+      z-index: 1;
     }
 
     .content {
-      z-index: 1;
+      z-index: 3;
       padding: 20px;
+      position: relative;
     }
 
     h1 {
@@ -55,10 +70,90 @@
     button:hover {
       background-color: #45a29e;
     }
+
+    .orbit-container {
+      position: absolute;
+      width: 300px;
+      height: 150px;
+      border-radius: 50%;
+      top: 50%;
+      left: 50%;
+      margin-top: -75px;
+      margin-left: -150px;
+      z-index: 2;
+      animation: rotate 10s linear infinite;
+      pointer-events: none;
+    }
+
+    .planet {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      font-size: 40px;
+      filter: drop-shadow(0 0 6px #9cf);
+    }
+
+    .planet:nth-child(2) { left: 60px; top: 70%; font-size: 25px; }
+    .planet:nth-child(3) { left: 130px; top: 30%; font-size: 35px; }
+    .planet:nth-child(4) { left: 200px; top: 45%; font-size: 30px; }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .logo {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      z-index: 4;
+    }
+
+    .comet {
+      position: absolute;
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, #ffffff, transparent);
+      opacity: 0.8;
+      animation: shoot 3s linear infinite;
+      z-index: 2;
+    }
+
+    @keyframes shoot {
+      0% {
+        transform: translate(-200px, -100px) rotate(45deg);
+        opacity: 0;
+      }
+      30% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(120vw, 120vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+
+    .comet:nth-child(1) { animation-delay: 0s; top: 10%; left: -200px; }
+    .comet:nth-child(2) { animation-delay: 1s; top: 30%; left: -300px; }
+    .comet:nth-child(3) { animation-delay: 2s; top: 50%; left: -400px; }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
   <div class="overlay"></div>
+  <img src="/mnt/data/file_00000000ea8062309b485539e66227d1" alt="Echoes of Orbit Logo" class="logo" />
+  <div class="comet"></div>
+  <div class="comet"></div>
+  <div class="comet"></div>
+  <div class="orbit-container">
+    <div class="planet">🪐</div>
+    <div class="planet">🌍</div>
+    <div class="planet">🌕</div>
+    <div class="planet">🌎</div>
+  </div>
   <div class="content">
     <h1 id="message"></h1>
     <button onclick="window.location.href='https://echoesoforbit.com'">Enter Orbit</button>
@@ -66,13 +161,13 @@
 
   <script>
     const messages = [
-      "Planet found. Life status: unknown.",
-      "Engaging warp drive... standby.",
-      "Echoes detected in the exosphere.",
-      "Cosmic dust tastes like irony.",
-      "A signal from orbit: it's witty.",
-      "No moon, just mood.",
-      "This isn’t your destination — it’s your launchpad."
+      "It's ok- vowels are tricky. Luckily, you've hit a redirect warp gate. Let's get you back to the real orbit.",
+      "Missed an “e”? That’s okay, we still like your gravitational pull.",
+      "Oops. You missed an “e.” But hey, even NASA misses launch windows.",
+      "You’re not lost—just temporarily drifting through the wrong galaxy.",
+      "Wrong orbit, but you’ve still got stellar potential.",
+      "Gravity let go of your spelling, huh?",
+      "Even astronauts hit the wrong buttons. That’s how legends are made."
     ];
 
     document.getElementById("message").innerText =
